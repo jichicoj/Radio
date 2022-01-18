@@ -38,7 +38,7 @@ public class RadioController implements Radio {
      * @author Ximena Loarca
      */
     @Override
-    public void nextStation(boolean station) {
+    public void nextStation(boolean frequency) {
 
     }
 
@@ -46,7 +46,7 @@ public class RadioController implements Radio {
      * @author Mariel Guamuche 
     */
     @Override
-    public void prevStation(boolean station) {
+    public void prevStation(boolean frequency) {
 
     }
 
