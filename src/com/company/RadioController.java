@@ -9,16 +9,26 @@ public class RadioController implements Radio {
     private double[] stationsFM; // donde se guardaran todas las estaciones de radio de la frecuencia FM
     private double currentStation; // donde se almacena la estación actual
     
+
+    /**
+     * @author Ximena Loarca
+     */
     @Override
     public boolean isOn() {
         return false;
     }
 
+    /**
+     * @author Ximena Loarca
+     */
     @Override
     public void turnOnOff() {
 
     }
 
+    /**
+     * @author Ximena Loarca
+     */
     @Override
     public void nextStation(boolean station) {
 
