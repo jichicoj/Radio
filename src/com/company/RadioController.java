@@ -7,6 +7,7 @@ public class RadioController implements Radio {
     private double[] favStationFM = new double[12]; // donde se guardan las estaciones favoritas del usuario FM
     private double[] stationsAM; // donde se guardaran todas las estaciones de radio de la frecuencia AM
     private double[] stationsFM; // donde se guardaran todas las estaciones de radio de la frecuencia FM
+    private double currentStation; // donde se almacena la estación actual
     
     @Override
     public boolean isOn() {
@@ -31,19 +32,36 @@ public class RadioController implements Radio {
 
     }
 
+    /**
+     * @author Joshua Chicoj 
+    */
     @Override
     public double getStation() {
-        return 0;
+        return this.currentStation();
     }
 
+    /**
+     * @author Joshua Chicoj 
+    */
     @Override
     public void saveStation(int position, double station) {
-
+        if (station == true) {
+            favStationAM[position] = this.getStation();
+        } else {
+            favStationFM[position] = this.getStation();
+        }
     }
 
+    /**
+     * @author Joshua Chicoj 
+    */
     @Override
     public double getSavedStation(int position) {
-        return 0;
+        if (station == true) {
+            return favStationAM[position];
+        } else {
+            return favStationFM[position];
+        }
     }
 
     /**
