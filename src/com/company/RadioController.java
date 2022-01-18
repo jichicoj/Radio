@@ -1,13 +1,21 @@
 package com.company;
 
 public class RadioController implements Radio {
-    private boolean onOff = false;  // indica el estado del radio true-> encendido, false-> apagado
-    private boolean frequency = false; // indica la frecuencia del radio true->am false->fm
-    private double[] favStationAM = new double[12]; // donde se guardan las estaciones favoritas del usuario AM
-    private double[] favStationFM = new double[12]; // donde se guardan las estaciones favoritas del usuario FM
+    private boolean onOff; // indica el estado del radio true-> encendido, false-> apagado
+    private boolean frequency; // indica la frecuencia del radio true->am false->fm
+    private double[] favStationAM; // donde se guardan las estaciones favoritas del usuario AM
+    private double[] favStationFM; // donde se guardan las estaciones favoritas del usuario FM
     private double[] stationsAM; // donde se guardaran todas las estaciones de radio de la frecuencia AM
     private double[] stationsFM; // donde se guardaran todas las estaciones de radio de la frecuencia FM
     private double currentStation; // donde se almacena la estación actual
+
+    public RadioController() {
+        this.onOff = false;
+        this.frequency = false;
+        this.currentStation = 0;
+        this.favStationAM = new double[12];
+        this.favStationFM  = new double[12];
+    }
     
 
     /**
@@ -47,7 +55,7 @@ public class RadioController implements Radio {
     */
     @Override
     public double getStation() {
-        return this.currentStation();
+        return this.currentStation;
     }
 
     /**
@@ -55,10 +63,10 @@ public class RadioController implements Radio {
     */
     @Override
     public void saveStation(int position, double station) {
-        if (station == true) {
-            favStationAM[position] = this.getStation();
+        if (this.getFrequency()) {
+            favStationAM[position] = station;
         } else {
-            favStationFM[position] = this.getStation();
+            favStationFM[position] = station;
         }
     }
 
@@ -67,7 +75,7 @@ public class RadioController implements Radio {
     */
     @Override
     public double getSavedStation(int position) {
-        if (station == true) {
+        if (this.getFrequency()) {
             return favStationAM[position];
         } else {
             return favStationFM[position];
