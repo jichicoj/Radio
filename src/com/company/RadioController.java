@@ -30,11 +30,17 @@ public class RadioController implements Radio {
         return false;
     }
 
+    /**
+     * @author Ximena Loarca
+     */
     @Override
     public void turnOnOff() {
 
     }
 
+    /**
+     * @author Ximena Loarca
+     */
     @Override
     public void nextStation(boolean station) {
 
@@ -91,22 +97,36 @@ public class RadioController implements Radio {
         } while(i<=107.9);
     }
 
-      /**
+    /**
      * @author Joshua Chicoj 
     */
     @Override
     public double getStation() {
-        return 0;
+        return this.currentStation;
     }
 
+    /**
+     * @author Joshua Chicoj 
+    */
     @Override
     public void saveStation(int position, double station) {
-
+        if (this.getFrequency()) {
+            favStationAM[position] = station;
+        } else {
+            favStationFM[position] = station;
+        }
     }
 
+    /**
+     * @author Joshua Chicoj 
+    */
     @Override
     public double getSavedStation(int position) {
-        return 0;
+        if (this.getFrequency()) {
+            return favStationAM[position];
+        } else {
+            return favStationFM[position];
+        }
     }
     /**
      * @author Mariel Guamuche 
