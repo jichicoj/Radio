@@ -65,7 +65,33 @@ public class RadioController implements Radio {
      */
     @Override
     public void nextStation(boolean frequency) {
-        
+        if(frequency==this.frequency) { // valida que sean las mismas frecuencias de radio0
+            if(this.frequency == true) { // se debe de usar el array de estaciones AM
+                int posicion=0;
+                for (double d : this.stationsAM) {
+                    if(d==this.currentStation) { break; } 
+                    posicion++; // mientras no encuentre la posicion de la estacion actual, entonces sumara a la siguiente posicion 
+                }
+                if(posicion==0) {
+                    System.out.println(this.stationsAM.get(this.stationsAM.size())); // cuando esta en la primera estacion, entonces el previo es la ultima en la lista
+                } else {
+                    System.out.println(this.stationsAM.get(posicion-1)); // de lo contrario muestra la estacion anterior 
+                }
+            } else { // se debe de usar el array de estaciones FM
+                int posicion=0;
+                for (double d : this.stationsFM) {
+                    if(d==this.currentStation) { break; } // al encontrar al valor que se igualan debe terminar el ciclo
+                    posicion++;
+                }
+                if(posicion==0) {
+                    this.currentStation=this.stationsFM.get(this.stationsFM.size());
+                    System.out.println(this.currentStation); // cuando esta en la primera estacion, entonces el previo es la ultima en la lista
+                } else {
+                    this.currentStation = this.stationsFM.get(posicion-1); //realiza el cambio en la estacion actual
+                    System.out.println(this.currentStation); // de lo contrario muestra la estacion anterior 
+                }
+            }
+        }
     }
 
 
