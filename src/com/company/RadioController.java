@@ -21,7 +21,6 @@ public class RadioController implements Radio {
         this.stationsFM = new ArrayList<>();
         setstationsAMFM();
     }
-    
 
      /**
      * Realiza el autollenado de las estaciones de radio disponibles.
@@ -69,12 +68,12 @@ public class RadioController implements Radio {
         
     }
 
+
     /**
      * @author Mariel Guamuche 
     */
     @Override
-    public void prevStation(boolean frequency) {
-        setstationsAMFM(); 
+    public void prevStation(boolean frequency) {      
         if(frequency==this.frequency) { // valida que sean las mismas frecuencias de radio0
             if(this.frequency == true) { // se debe de usar el array de estaciones AM
                 int posicion=0;
@@ -94,12 +93,31 @@ public class RadioController implements Radio {
                     posicion++;
                 }
                 if(posicion==0) {
-                    System.out.println(this.stationsFM.get(this.stationsFM.size())); // cuando esta en la primera estacion, entonces el previo es la ultima en la lista
+                    this.currentStation=this.stationsFM.get(this.stationsFM.size());
+                    System.out.println(this.currentStation); // cuando esta en la primera estacion, entonces el previo es la ultima en la lista
                 } else {
-                    System.out.println(this.stationsFM.get(posicion-1)); // de lo contrario muestra la estacion anterior 
+                    this.currentStation = this.stationsFM.get(posicion-1); //realiza el cambio en la estacion actual
+                    System.out.println(this.currentStation); // de lo contrario muestra la estacion anterior 
                 }
             }
         }
+    }
+
+    /**
+     * Realiza el autollenado de las estaciones de radio disponibles.
+     */
+    private void setstationsAMFM() {        
+        double i=530.0;
+        stationsAM.add(i); // se agrega la primera radio
+        do {
+            stationsAM.add(i+10);
+        } while(i<=1610.0);
+
+        i=87.9;
+        stationsFM.add(i); // se agrega la primera radio
+        do {
+            stationsFM.add(i+0.2);
+        } while(i<=107.9);
     }
 
     /**
@@ -133,9 +151,8 @@ public class RadioController implements Radio {
             return favStationFM[position];
         }
     }
-
-
-     /**
+  
+    /**
      * @author Mariel Guamuche 
     */
     @Override
