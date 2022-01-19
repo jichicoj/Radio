@@ -23,22 +23,6 @@ public class RadioController implements Radio {
         this.currentStation = stationsFM.get(0);
     }
 
-     /**
-     * Realiza el autollenado de las estaciones de radio disponibles.
-     */
-    private void setstationsAMFM() {        
-        double i=530.0;
-        stationsAM.add(i); // se agrega la primera radio
-        do {
-            stationsAM.add(i+10);
-        } while(i<=1610.0);
-
-        i=87.9;
-        stationsFM.add(i); // se agrega la primera radio
-        do {
-            stationsFM.add(i+0.2);
-        } while(i<=107.9);
-    }
 
     /**
      * @author Ximena Loarca
@@ -66,7 +50,31 @@ public class RadioController implements Radio {
      */
     @Override
     public void nextStation(boolean frequency) {
-        
+        if(frequency==this.frequency) { 
+            if(this.frequency) { 
+                int posicion=0;
+                for (double d : this.stationsAM) {
+                    if(d==this.currentStation) { break; } 
+                    posicion++; 
+                }
+                if(posicion== this.stationsAM.size()-1) {
+                    this.currentStation=this.stationsAM.get(posicion=0);
+                } else {
+                    this.currentStation = this.stationsAM.get(posicion+1);
+                }
+            } else { 
+                int posicion=0;
+                for (double d : this.stationsFM) {
+                    if(d==this.currentStation) { break; } 
+                    posicion++;
+                }
+                if(posicion==this.stationsFM.size()-1) {
+                    this.currentStation=this.stationsFM.get(posicion=0);
+                } else {
+                    this.currentStation = this.stationsFM.get(posicion+1); 
+            }
+        }
+    }
     }
 
 
