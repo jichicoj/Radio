@@ -22,12 +22,29 @@ public class RadioController implements Radio {
         setstationsAMFM();
     }
 
+     /**
+     * Realiza el autollenado de las estaciones de radio disponibles.
+     */
+    private void setstationsAMFM() {        
+        double i=530.0;
+        stationsAM.add(i); // se agrega la primera radio
+        do {
+            stationsAM.add(i+10);
+        } while(i<=1610.0);
+
+        i=87.9;
+        stationsFM.add(i); // se agrega la primera radio
+        do {
+            stationsFM.add(i+0.2);
+        } while(i<=107.9);
+    }
+
     /**
      * @author Ximena Loarca
      */
     @Override
     public boolean isOn() {
-        return false;
+        return onOff;
     }
 
     /**
@@ -35,7 +52,12 @@ public class RadioController implements Radio {
      */
     @Override
     public void turnOnOff() {
-
+        if (onOff == false){
+            onOff = true;
+        }
+        else{
+            onOff = false;
+        }
     }
 
     /**
@@ -43,7 +65,7 @@ public class RadioController implements Radio {
      */
     @Override
     public void nextStation(boolean frequency) {
-
+        
     }
 
 
@@ -129,6 +151,7 @@ public class RadioController implements Radio {
             return favStationFM[position];
         }
     }
+  
     /**
      * @author Mariel Guamuche 
     */
