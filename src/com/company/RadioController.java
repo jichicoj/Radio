@@ -14,12 +14,13 @@ public class RadioController implements Radio {
     public RadioController() {
         this.onOff = false;
         this.frequency = false;
-        this.currentStation = 0;
         this.favStationAM = new double[12];
         this.favStationFM  = new double[12];
         this.stationsAM = new ArrayList<>();
         this.stationsFM = new ArrayList<>();
         setstationsAMFM();
+
+        this.currentStation = stationsFM.get(0);
     }
 
      /**
@@ -104,23 +105,6 @@ public class RadioController implements Radio {
     }
 
     /**
-     * Realiza el autollenado de las estaciones de radio disponibles.
-     */
-    private void setstationsAMFM() {        
-        double i=530.0;
-        stationsAM.add(i); // se agrega la primera radio
-        do {
-            stationsAM.add(i+10);
-        } while(i<=1610.0);
-
-        i=87.9;
-        stationsFM.add(i); // se agrega la primera radio
-        do {
-            stationsFM.add(i+0.2);
-        } while(i<=107.9);
-    }
-
-    /**
      * @author Joshua Chicoj 
     */
     @Override
@@ -167,8 +151,10 @@ public class RadioController implements Radio {
     public void switchAMFM() {
         if(this.frequency==true) { // valida el estado de la frecuencia
             this.frequency = false; // cambia a frecuencia FM
+            this.currentStation = stationsFM.get(0);
         } else {
             this.frequency = true; // cambia a frecuencia AM
+            this.currentStation = stationsAM.get(0);
         }
     }
 }
