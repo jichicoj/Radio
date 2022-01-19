@@ -42,6 +42,7 @@ public class RadioController implements Radio {
 
     /**
      * @author Ximena Loarca
+     * Muestra el estado actual de la radio
      */
     @Override
     public boolean isOn() {
@@ -50,6 +51,7 @@ public class RadioController implements Radio {
 
     /**
      * @author Ximena Loarca
+     * Cambia el estado actual de la radio
      */
     @Override
     public void turnOnOff() {
@@ -63,10 +65,35 @@ public class RadioController implements Radio {
 
     /**
      * @author Ximena Loarca
+     * Cambia a la siguiente estacion de radio
      */
     @Override
     public void nextStation(boolean frequency) {
-        
+        if(frequency==this.frequency) { 
+            if(this.frequency) { 
+                int posicion=0;
+                for (double d : this.stationsAM) {
+                    if(d==this.currentStation) { break; } 
+                    posicion++; 
+                }
+                if(posicion== this.stationsAM.size()-1) {
+                    this.currentStation=this.stationsAM.get(posicion=0);
+                } else {
+                    this.currentStation = this.stationsAM.get(posicion+1);
+                }
+            } else { 
+                int posicion=0;
+                for (double d : this.stationsFM) {
+                    if(d==this.currentStation) { break; } 
+                    posicion++;
+                }
+                if(posicion== this.stationsFM.size()-1) {
+                    this.currentStation=this.stationsFM.get(posicion=0);
+                } else {
+                    this.currentStation = this.stationsFM.get(posicion+1); 
+                }
+            }
+        }
     }
 
 
