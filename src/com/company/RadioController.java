@@ -19,11 +19,11 @@ public class RadioController implements Radio {
         this.stationsAM = new ArrayList<>();
         this.stationsFM = new ArrayList<>();
         setstationsAMFM();
-
         this.currentStation = stationsFM.get(0);
     }
 
-     /**
+
+    /**
      * Realiza el autollenado de las estaciones de radio disponibles.
      */
     private void setstationsAMFM() {        
@@ -39,7 +39,7 @@ public class RadioController implements Radio {
             stationsFM.add(i+0.2);
         } while(i<=107.9);
     }
-
+    
     /**
      * @author Ximena Loarca
      * Muestra el estado actual de la radio
