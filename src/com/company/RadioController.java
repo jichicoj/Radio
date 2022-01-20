@@ -30,13 +30,15 @@ public class RadioController implements Radio {
         double i=530.0;
         stationsAM.add(i); // se agrega la primera radio
         do {
-            stationsAM.add(i+10);
+            i += 10;
+            stationsAM.add(i);
         } while(i<=1610.0);
 
         i=87.9;
         stationsFM.add(i); // se agrega la primera radio
         do {
-            stationsFM.add(i+0.2);
+            i += 0.2;
+            stationsFM.add(i);
         } while(i<=107.9);
     }
     
@@ -110,9 +112,9 @@ public class RadioController implements Radio {
                     posicion++; // mientras no encuentre la posicion de la estacion actual, entonces sumara a la siguiente posicion 
                 }
                 if(posicion==0) {
-                    System.out.println(this.stationsAM.get(this.stationsAM.size())); // cuando esta en la primera estacion, entonces el previo es la ultima en la lista
+                    this.currentStation = this.stationsAM.get(this.stationsAM.size() - 1); // cuando esta en la primera estacion, entonces el previo es la ultima en la lista
                 } else {
-                    System.out.println(this.stationsAM.get(posicion-1)); // de lo contrario muestra la estacion anterior 
+                    this.currentStation = this.stationsAM.get(posicion-1); // de lo contrario muestra la estacion anterior
                 }
             } else { // se debe de usar el array de estaciones FM
                 int posicion=0;
@@ -121,11 +123,9 @@ public class RadioController implements Radio {
                     posicion++;
                 }
                 if(posicion==0) {
-                    this.currentStation=this.stationsFM.get(this.stationsFM.size());
-                    System.out.println(this.currentStation); // cuando esta en la primera estacion, entonces el previo es la ultima en la lista
+                    this.currentStation=this.stationsFM.get(this.stationsFM.size() - 1);// cuando esta en la primera estacion, entonces el previo es la ultima en la lista
                 } else {
                     this.currentStation = this.stationsFM.get(posicion-1); //realiza el cambio en la estacion actual
-                    System.out.println(this.currentStation); // de lo contrario muestra la estacion anterior 
                 }
             }
         }
@@ -157,8 +157,16 @@ public class RadioController implements Radio {
     @Override
     public double getSavedStation(int position) {
         if (this.getFrequency()) {
+            if (favStationAM[position] != 0) {
+                currentStation = favStationAM[position];
+            }
+
             return favStationAM[position];
         } else {
+            if (favStationFM[position] != 0) {
+                currentStation = favStationFM[position];
+            }
+
             return favStationFM[position];
         }
     }
