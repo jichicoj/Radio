@@ -12,22 +12,31 @@ class RadioControllerTest {
 
     @org.junit.jupiter.api.Test
     void isOnTest() {
-        
+        assertEquals(false, radio.isOn());
     }
 
     @org.junit.jupiter.api.Test
     void turnOnOffTest() {
+        radio.turnOnOff();
+        assertEquals(true, radio.isOn());
     }
 
     @org.junit.jupiter.api.Test
-    void nextStationTest() {        
+    void nextStationTest() {      
+        radio.nextStation(radio.getFrequency());
+        radio.nextStation(radio.getFrequency());
+        assertEquals(88.30, Math.round(radio.getStation()*100)/100d);
     }
 
     @org.junit.jupiter.api.Test
     void prevStationTest() {
         radio.prevStation(radio.getFrequency());
         radio.prevStation(radio.getFrequency());
-        assertEquals(107.7, Math.round(radio.getStation()*100)/100d);
+            assertEquals(107.7, Math.round(radio.getStation()*100)/100d);
+
+        radio.switchAMFM();
+        radio.prevStation(radio.getFrequency());
+        assertEquals(1610.0, Math.round(radio.getStation()*100)/100d);
     }
 
     @org.junit.jupiter.api.Test

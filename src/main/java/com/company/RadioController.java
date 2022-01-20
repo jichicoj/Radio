@@ -36,19 +36,17 @@ public class RadioController implements Radio {
      * Realiza el autollenado de las estaciones de radio disponibles. No tiene datos de retorno.
      */
     private void setstationsAMFM() {        
-        double i=530.0;
-        stationsAM.add(i); // se agrega la primera radio
+        double i=530.0;        
         do {
-            i += 10;
             stationsAM.add(i);
+            i += 10;            
         } while(i<=1610.0);
 
-        i=87.9;
-        stationsFM.add(i); // se agrega la primera radio
-        do {
-            i += 0.2;
-            stationsFM.add(i);
-        } while(i<=107.9);
+        i=87.9;            
+        do {            
+            stationsFM.add(i);    
+            i += 0.2;        
+        } while(i<108.1);
     }
     
     /**
