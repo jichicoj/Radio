@@ -2,6 +2,12 @@ package com.company;
 
 import java.util.ArrayList;
 
+/**
+ * @author Joshua Chicoj
+ * @author Ximena Loarca
+ * @author Mariel Guamuche
+ * @since "17/enero/2022"
+ */
 public class RadioController implements Radio {
     private boolean onOff; // indica el estado del radio true-> encendido, false-> apagado
     private boolean frequency; // indica la frecuencia del radio true->am false->fm
@@ -12,7 +18,7 @@ public class RadioController implements Radio {
     private double currentStation; // donde se almacena la estación actual
 
     /**
-     *
+     * Constructor
      */
     public RadioController() {
         this.onOff = false;
@@ -27,7 +33,7 @@ public class RadioController implements Radio {
 
 
     /**
-     * Realiza el autollenado de las estaciones de radio disponibles.
+     * Realiza el autollenado de las estaciones de radio disponibles. No tiene datos de retorno.
      */
     private void setstationsAMFM() {        
         double i=530.0;
@@ -103,7 +109,8 @@ public class RadioController implements Radio {
 
 
     /**
-     * @author Mariel Guamuche 
+     * Cambia a la estación previa de la radio
+     * @author Mariel Guamuche
     */
     @Override
     public void prevStation(boolean frequency) {      
@@ -183,7 +190,8 @@ public class RadioController implements Radio {
     }
   
     /**
-     * @author Mariel Guamuche 
+     * Indica el estado de la frecuencia actual AM->true, FM->false
+     * @author Mariel Guamuche
     */
     @Override
     public boolean getFrequency() {
@@ -191,7 +199,9 @@ public class RadioController implements Radio {
     }
 
     /**
-     * @author Mariel Guamuche 
+     * Cambia el tipo de frecuencia AM->true, FM->false
+     * Coloca por default la primera estación de radio de dicha frecuencia
+     *  @author Mariel Guamuche
     */
     @Override
     public void switchAMFM() {
