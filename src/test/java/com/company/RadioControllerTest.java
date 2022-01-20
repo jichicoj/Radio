@@ -1,42 +1,57 @@
 package com.company;
-
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 
 class RadioControllerTest {
 
-    @org.junit.jupiter.api.Test
-    void isOn() {
+    Radio radio;
+    @BeforeEach
+    void setUp() {
+        radio = new RadioController(); //realizara antes que todas las pruebas la instancia del objeto de tipo Radio
     }
 
     @org.junit.jupiter.api.Test
-    void turnOnOff() {
+    void isOnTest() {
+        
     }
 
     @org.junit.jupiter.api.Test
-    void nextStation() {
+    void turnOnOffTest() {
     }
 
     @org.junit.jupiter.api.Test
-    void prevStation() {
+    void nextStationTest() {        
     }
 
     @org.junit.jupiter.api.Test
-    void getStation() {
+    void prevStationTest() {
+        radio.prevStation(radio.getFrequency());
+        radio.prevStation(radio.getFrequency());
+        assertEquals(107.7, Math.round(radio.getStation()*100)/100d);
     }
 
     @org.junit.jupiter.api.Test
-    void saveStation() {
+    void getStationTest() {
     }
 
     @org.junit.jupiter.api.Test
-    void getSavedStation() {
+    void saveStationTest() {
     }
 
     @org.junit.jupiter.api.Test
-    void getFrequency() {
+    void getSavedStationTest() {
     }
 
     @org.junit.jupiter.api.Test
-    void switchAMFM() {
+    void getFrequencyTest() {
+        assertEquals(false, radio.getFrequency());
+    }
+
+    @org.junit.jupiter.api.Test
+    void switchAMFMTest() {                
+        radio.switchAMFM(); // se cambia el estado inicial de la radio (FM-> false) a AM (true)
+        assertEquals(true, radio.getFrequency());
+        radio.switchAMFM(); // AM (true) a FM (false.)
+        assertEquals(false, radio.getFrequency());       
     }
 }
