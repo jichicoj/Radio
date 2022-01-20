@@ -11,6 +11,9 @@ public class RadioController implements Radio {
     private ArrayList<Double> stationsFM; // donde se guardaran todas las estaciones de radio de la frecuencia FM
     private double currentStation; // donde se almacena la estación actual
 
+    /**
+     *
+     */
     public RadioController() {
         this.onOff = false;
         this.frequency = false;
@@ -132,42 +135,50 @@ public class RadioController implements Radio {
     }
 
     /**
-     * @author Joshua Chicoj 
-    */
+     * Devuelve la estación actual
+     * @author Joshua Chicoj
+     * @return
+     */
     @Override
     public double getStation() {
         return this.currentStation;
-    }
+    } // retorna la estacición actual
 
     /**
-     * @author Joshua Chicoj 
-    */
+     * Guarda la estación actual en una posición dentro del arraylist de favoritos
+     * @author Joshua Chicoj
+     * @param position index indicating where to store the station.
+     * @param station double indicating the station.
+     */
     @Override
     public void saveStation(int position, double station) {
-        if (this.getFrequency()) {
-            favStationAM[position] = station;
+        if (this.getFrequency()) { // Verifica la estación
+            favStationAM[position - 1] = station; // Almacena la estación en la posición indicada dentro del arraylist
         } else {
-            favStationFM[position] = station;
+            favStationFM[position - 1] = station;
         }
     }
 
     /**
-     * @author Joshua Chicoj 
-    */
+     * Obtiene la estación almacenada en una posición del arraylist de favoritos
+     * @author Joshua Chicoj
+     * @param position index indicating which station to pick.
+     * @return
+     */
     @Override
     public double getSavedStation(int position) {
-        if (this.getFrequency()) {
-            if (favStationAM[position] != 0) {
-                currentStation = favStationAM[position];
+        if (this.getFrequency()) { // Verifica la estación
+            if (favStationAM[position - 1] != 0) { // Verifica que el valor dentro de la posición indicada esté lleno
+                currentStation = favStationAM[position - 1]; // Cambia la estación actual con la estación de la posición del arraylist
             }
 
-            return favStationAM[position];
+            return favStationAM[position - 1]; // Devuelve la estación almacenada en la posición indicada
         } else {
-            if (favStationFM[position] != 0) {
-                currentStation = favStationFM[position];
+            if (favStationFM[position - 1] != 0) {
+                currentStation = favStationFM[position - 1];
             }
 
-            return favStationFM[position];
+            return favStationFM[position - 1];
         }
     }
   

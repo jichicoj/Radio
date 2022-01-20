@@ -32,14 +32,28 @@ class RadioControllerTest {
 
     @org.junit.jupiter.api.Test
     void getStationTest() {
+        assertAll(() -> assertEquals(87.9, radio.getStation()),
+                () -> {
+                    radio.switchAMFM();
+                    assertEquals(530, radio.getStation());
+                });
     }
 
     @org.junit.jupiter.api.Test
     void saveStationTest() {
+        radio.saveStation(1, 87.9);
+        assertEquals(87.9, radio.getSavedStation(1));
     }
 
     @org.junit.jupiter.api.Test
     void getSavedStationTest() {
+        assertAll(
+                () -> assertEquals(radio.getSavedStation(1), 0),
+                () -> {
+                    radio.saveStation(2, 87.9);
+                    assertEquals(87.9, radio.getSavedStation(2));
+                }
+        );
     }
 
     @org.junit.jupiter.api.Test
